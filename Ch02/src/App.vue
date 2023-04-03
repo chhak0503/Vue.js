@@ -101,13 +101,89 @@
       </tr>
     </table>
   </form>
-
   <hr />
 
   <h4>6)v-bind</h4>
+  <img v-bind:src="path1" />
+  <img v-bind:src="path2" />
+
+  <a :href="url1">네이버</a>
+  <a :href="url2">카카오</a>
+
+  <button @click="oneClick" :disabled="isActive">한번만 클릭되는 버튼</button>
   <hr />
 
   <h4>7)v-model</h4>
+  <h4>input</h4>
+  <p>이름 : {{ name }}</p>
+  <input type="text" v-model="name" placeholder="이름 입력" />
+
+  <h4>textarea</h4>
+  <p>{{ message }}</p>
+  <p>문자수 : {{ message.length }}</p>
+  <textarea v-model="message" cols="30" rows="10"></textarea>
+
+  <h4>checkbox</h4>
+  <p>
+    <input type="checkbox" v-model="isChecked" />
+    체크상태 : {{ isChecked }}
+  </p>
+
+  <p>
+    <label><input type="checkbox" value="등산" v-model="hobbies" />등산</label>
+    <label><input type="checkbox" value="영화" v-model="hobbies" />영화</label>
+    <label><input type="checkbox" value="독서" v-model="hobbies" />독서</label>
+    <label><input type="checkbox" value="운동" v-model="hobbies" />운동</label>
+    <label><input type="checkbox" value="게임" v-model="hobbies" />게임</label>
+    <br />
+    선택값 : {{ hobbies }}
+  </p>
+
+  <h4>select</h4>
+  <select v-model="country">
+    <option>한국</option>
+    <option>미국</option>
+    <option>일본</option>
+    <option>중국</option>
+    <option>호주</option>
+  </select>
+  <p>선택값 : {{ country }}</p>
+
+  <h4>form</h4>
+  <form v-on:submit.prevent="submitHandler2">
+    <table border="1">
+      <tr>
+        <td>아이디</td>
+        <td><input type="text" v-model="user.uid" /></td>
+      </tr>
+      <tr>
+        <td>이름</td>
+        <td><input type="text" v-model="user.name" /></td>
+      </tr>
+      <tr>
+        <td>나이</td>
+        <td><input type="number" v-model="user.age" /></td>
+      </tr>
+      <tr>
+        <td>주소</td>
+        <td>
+          <select v-model="user.addr">
+            <option>서울</option>
+            <option>대전</option>
+            <option>대구</option>
+            <option>부산</option>
+            <option>광주</option>
+          </select>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="2" align="right">
+          <input type="submit" value="전송" />
+        </td>
+      </tr>
+    </table>
+  </form>
+
   <hr />
 </template>
 
@@ -142,6 +218,22 @@ export default {
         { uid: "a105", name: "이순신", age: 53 },
       ],
       count: 0,
+      path1: "/img/flower1.jpg",
+      path2: "/img/flower2.jpg",
+      url1: "https://naver.com",
+      url2: "https://kakao.com",
+      isActive: false,
+      name: "홍길동",
+      message: "",
+      isChecked: false,
+      hobbies: [],
+      country: "한국",
+      user: {
+        uid: "",
+        name: "",
+        age: 0,
+        addr: "",
+      },
     };
   }, // data end
   methods: {
@@ -170,6 +262,16 @@ export default {
       console.log("name : " + name);
       console.log("age : " + age);
       console.log("addr : " + addr);
+    },
+    submitHandler2: function () {
+      console.log("uid : " + this.user.uid);
+      console.log("name : " + this.user.name);
+      console.log("age : " + this.user.age);
+      console.log("addr : " + this.user.addr);
+    },
+    oneClick: function () {
+      alert("한번만 클릭할 수 있습니다.");
+      this.isActive = true;
     },
   }, // methods end
 };
