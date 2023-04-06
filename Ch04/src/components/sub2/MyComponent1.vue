@@ -33,7 +33,7 @@
 </template>
 
 <script>
-import { ref, reactive, computed } from "vue";
+import { ref, reactive, computed, watch } from "vue";
 
 export default {
   name: "MyComponent1",
@@ -79,6 +79,7 @@ export default {
       result.value++;
     };
 
+    // computed API
     const result2x = computed(() => {
       return result.value * 2;
     });
@@ -90,6 +91,12 @@ export default {
     });
 
     const josunPerson = computed(() => users.filter((user) => user.id > 3));
+
+    // watch API
+    watch(result, (current, prev) => {
+      console.log("이전값 : " + prev);
+      console.log("현재값 : " + current);
+    });
 
     return {
       message,
