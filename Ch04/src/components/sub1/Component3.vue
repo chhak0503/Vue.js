@@ -11,7 +11,11 @@
 export default {
   name: "Component3",
   setup(props, context) {
-    // 변수 선언(객체는 반응성 있음)
+    // 변수 선언(반응성 없음)
+    let name = "";
+    let age = 0;
+
+    // 객체는 반응성 있음
     const user = {
       name: "",
       age: 0,
@@ -25,6 +29,8 @@ export default {
     };
 
     return {
+      name,
+      age,
       user,
       btnSend,
     };

@@ -6,6 +6,7 @@
   <hr />
 
   <h4>2)Reactivity</h4>
+  <MyComponent1></MyComponent1>
   <hr />
 
   <h4>3)LifeCycle Hooks</h4>
@@ -17,9 +18,10 @@
 
 <script>
 import Component1 from "./components/sub1/Component1.vue";
+import MyComponent1 from "./components/sub2/MyComponent1.vue";
 
 export default {
   name: "App",
-  components: { Component1 },
+  components: { Component1, MyComponent1 },
 };
 </script>
