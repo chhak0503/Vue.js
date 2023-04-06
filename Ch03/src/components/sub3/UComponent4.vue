@@ -5,10 +5,12 @@
     c4Age : {{ c4Age }}<br />
   </p>
 </template>
+
 <script>
 export default {
   name: "UComponent4",
   props: ["c4Name", "c4Age"],
 };
 </script>
+
 <style scoped></style>
