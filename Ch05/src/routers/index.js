@@ -13,6 +13,10 @@ import Footer from "../components/sub3/Footer.vue";
 import Main1 from "../components/sub3/Main1.vue";
 import Main2 from "../components/sub3/Main2.vue";
 import Main3 from "../components/sub3/Main3.vue";
+import Component1 from "../components/sub4/Component1.vue";
+import Component2 from "../components/sub4/Component2.vue";
+import Form1 from "../components/sub4/Form1.vue";
+import Result1 from "../components/sub4/Result1.vue";
 
 // router 인스턴스 생성
 const router = createRouter({
@@ -57,6 +61,14 @@ const router = createRouter({
         footer: Footer,
       },
     },
+    { path: "/component1", name: "Component1", component: Component1 },
+    {
+      path: "/component2/:name/:age/:addr",
+      name: "Component2",
+      component: Component2,
+    },
+    { path: "/form1", name: "Form1", component: Form1 },
+    { path: "/result1", name: "Result1", component: Result1 },
   ],
 });
 
