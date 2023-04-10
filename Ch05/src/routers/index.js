@@ -17,6 +17,8 @@ import Component1 from "../components/sub4/Component1.vue";
 import Component2 from "../components/sub4/Component2.vue";
 import Form1 from "../components/sub4/Form1.vue";
 import Result1 from "../components/sub4/Result1.vue";
+import Form2 from "../components/sub4/Form2.vue";
+import Result2 from "../components/sub4/Result2.vue";
 
 // router 인스턴스 생성
 const router = createRouter({
@@ -69,6 +71,12 @@ const router = createRouter({
     },
     { path: "/form1", name: "Form1", component: Form1 },
     { path: "/result1", name: "Result1", component: Result1 },
+    { path: "/form2", name: "Form2", component: Form2 },
+    {
+      path: "/result2/:uid/:name/:age/:addr",
+      name: "Result2",
+      component: Result2,
+    },
   ],
 });
 

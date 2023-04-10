@@ -1,5 +1,5 @@
 <template>
-  <h4>Form1</h4>
+  <h4>Form2</h4>
   <form v-on:submit.prevent="submitHander">
     <table border="1">
       <tr>
@@ -51,8 +51,8 @@ const user = reactive({
 const submitHander = () => {
   // router 컴포넌트 이동
   router.push({
-    name: "Result1",
-    query: {
+    name: "Result2",
+    params: {
       uid: user.uid,
       name: user.name,
       age: user.age,

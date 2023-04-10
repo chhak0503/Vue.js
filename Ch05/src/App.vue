@@ -35,7 +35,8 @@
     >Component2</router-link
   >
   /
-  <router-link to="/form1">Form1</router-link>
+  <router-link to="/form1">Form1</router-link> /
+  <router-link to="/form2">Form2</router-link>
 
   <hr />
 
