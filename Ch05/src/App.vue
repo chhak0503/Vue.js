@@ -5,16 +5,23 @@
   <router-link to="/hello">Hello</router-link> /
   <router-link to="/welcome">Welcome</router-link> /
   <router-link to="/greeting">Greeting</router-link>
-
-  <router-view></router-view>
-
   <hr />
 
   <h4>2)Nested Router</h4>
+  <router-link to="/parent">Parent</router-link>
+
   <hr />
 
   <h4>3)Named View</h4>
+  <RouterLink to="/main1">Main1</RouterLink> /
+  <RouterLink to="/main2">Main2</RouterLink> /
+  <RouterLink to="/main3">Main3</RouterLink>
   <hr />
+
+  <h4>Router 컴포넌트 출력</h4>
+  <router-view name="header"></router-view>
+  <router-view></router-view>
+  <router-view name="footer"></router-view>
 </template>
 
 <script setup></script>
