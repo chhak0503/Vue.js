@@ -1,7 +1,6 @@
 <template>
-  <h3>Ch06.Vuex 실습</h3>
-
-  <p>Vuex message : {{ store.getters.getMessage }}</p>
+  <h4>Component1</h4>
+  <p>Vuex message : {{ message }}</p>
   <table border="1">
     <tr>
       <th>번호</th>
@@ -14,20 +13,19 @@
       <td>{{ todo.done }}</td>
     </tr>
   </table>
-
-  <Component1></Component1>
-  <Component2></Component2>
-  <Component3></Component3>
+  <p>Vuex count : {{ store.state.count }}</p>
+  <button @click="btnIncrement">증가</button>
 </template>
-
 <script setup>
-import Component1 from "./components/Component1.vue";
-import Component2 from "./components/Component2.vue";
-import Component3 from "./components/Component3.vue";
 import { useStore } from "vuex";
 
 const store = useStore();
+const message = store.getters.getMessage;
 const todos = store.getters.getTodos;
-</script>
 
+const btnIncrement = function () {
+  // store action 호출
+  store.dispatch("increment");
+};
+</script>
 <style scoped></style>

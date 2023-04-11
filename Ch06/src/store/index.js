@@ -18,10 +18,30 @@ export const store = createStore({
   },
 
   // mutations : store의 상태값을 변경하는 메서드를 정의
-  mutations: {},
+  mutations: {
+    INCREMENT: function (state) {
+      state.count++;
+    },
+    DECREMENT: function (state) {
+      state.count--;
+    },
+    INIT_COUNT: function (state) {
+      state.count = 0;
+    },
+  },
 
   // actions : 비동기 방식으로 mutations을 실행하는 메서드 정의
-  actions: {},
+  actions: {
+    increment: function (context) {
+      context.commit("INCREMENT");
+    },
+    decrement: function (context) {
+      context.commit("DECREMENT");
+    },
+    initCount: function (context) {
+      context.commit("INIT_COUNT");
+    },
+  },
 
   // getters : 외부에 상태값을 전달하는 메서드 정의
   getters: {
@@ -30,6 +50,9 @@ export const store = createStore({
     },
     getTodos: function (state) {
       return state.todos;
+    },
+    getCount: function (state) {
+      return state.count;
     },
   },
 });
