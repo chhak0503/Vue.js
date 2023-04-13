@@ -19,8 +19,11 @@
   </form>
 </template>
 <script setup>
+import { useRouter } from "vue-router";
 import { reactive } from "vue";
 import axios from "axios";
+
+const router = useRouter();
 
 const user = reactive({
   uid: "",
@@ -29,9 +32,13 @@ const user = reactive({
 
 const loginProc = function () {
   axios
-    .post("http://localhost:8080/user/login", user)
+    .post("http://localhost:8080/Voard/user/login", user)
     .then((response) => {
       console.log(response);
+      const token = response.data.accessToken;
+
+      localStorage.setItem("accessToken", token);
+      router.push("/jwt/loginSuccess");
     })
     .catch((error) => {
       console.log(error);
