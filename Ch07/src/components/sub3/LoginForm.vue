@@ -20,10 +20,12 @@
 </template>
 <script setup>
 import { useRouter } from "vue-router";
+import { useStore } from "vuex";
 import { reactive } from "vue";
 import axios from "axios";
 
 const router = useRouter();
+const store = useStore();
 
 const user = reactive({
   uid: "",
@@ -31,18 +33,7 @@ const user = reactive({
 });
 
 const loginProc = function () {
-  axios
-    .post("http://localhost:8080/Voard/user/login", user)
-    .then((response) => {
-      console.log(response);
-      const token = response.data.accessToken;
-
-      localStorage.setItem("accessToken", token);
-      router.push("/jwt/loginSuccess");
-    })
-    .catch((error) => {
-      console.log(error);
-    });
+  store.dispatch("login", user);
 };
 </script>
 <style scoped></style>
