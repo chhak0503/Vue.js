@@ -33,7 +33,16 @@ const user = reactive({
 });
 
 const loginProc = function () {
-  store.dispatch("login", user);
+  // 로그인 요청
+  store
+    .dispatch("login", user)
+    .then((response) => {
+      // 로그인 성공 전환
+      router.push("/jwt/loginSuccess");
+    })
+    .catch((error) => {
+      alert("로그인 실패!");
+    });
 };
 </script>
 <style scoped></style>

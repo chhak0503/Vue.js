@@ -7,5 +7,16 @@
   </p>
   <router-view></router-view>
 </template>
-<script setup></script>
+<script setup>
+import { onBeforeMount } from "vue";
+import { useStore } from "vuex";
+
+const store = useStore();
+
+onBeforeMount(() => {
+  console.log("App onBeforeMount!!!");
+  const accessToken = localStorage.getItem("accessToken");
+  store.dispatch("authUser", accessToken);
+});
+</script>
 <style scoped></style>
