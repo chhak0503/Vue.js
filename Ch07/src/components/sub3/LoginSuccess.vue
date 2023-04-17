@@ -8,11 +8,14 @@
 <script setup>
 import { useRouter } from "vue-router";
 import { useStore } from "vuex";
+import { computed } from "vue";
 
 const router = useRouter();
 const store = useStore();
 
-const user = store.getters.getUser;
+const user = computed(() => {
+  return store.getters.getUser;
+});
 
 const logout = () => {
   localStorage.removeItem("accessToken");

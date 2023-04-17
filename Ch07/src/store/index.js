@@ -19,7 +19,9 @@ const store = createStore({
     },
     authUser: function (context, token) {
       return axios
-        .post("http://localhost:8080/Voard/user/auth", token)
+        .get("http://localhost:8080/Voard/user/auth", {
+          headers: { "X-AUTH-TOKEN": token },
+        })
         .then((response) => {
           console.log(response);
           const user = response.data.user;
