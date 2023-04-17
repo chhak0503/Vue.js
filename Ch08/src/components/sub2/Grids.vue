@@ -40,9 +40,15 @@
     </v-row>
 
     <v-row class="mt-4">
-      <v-col md="12" lg="4" class="border text-center">md1</v-col>
-      <v-col md="12" lg="4" class="border text-center">md2</v-col>
-      <v-col md="12" lg="4" class="border text-center">md3</v-col>
+      <v-col cols="12" sm="6" class="border text-center">col1</v-col>
+      <v-col cols="12" sm="6" class="border text-center">col2</v-col>
+      <v-col cols="12" sm="12" class="border text-center">col3</v-col>
+    </v-row>
+
+    <v-row>
+      <v-col cols="12" sm="4" class="border text-center">1</v-col>
+      <v-col cols="12" sm="4" class="border text-center">2</v-col>
+      <v-col cols="12" sm="4" class="border text-center">3</v-col>
     </v-row>
   </v-container>
 </template>
