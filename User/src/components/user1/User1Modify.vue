@@ -1,10 +1,10 @@
 <template>
-  <h4>User1 등록</h4>
-  <form @submit.prevent="user1Register">
+  <h4>User1 수정</h4>
+  <form @submit.prevent="user1Modify">
     <table border="1">
       <tr>
         <td>아이디</td>
-        <td><input type="text" v-model="user.uid" /></td>
+        <td><input type="text" v-model="user.uid" readonly /></td>
       </tr>
       <tr>
         <td>이름</td>
@@ -19,7 +19,7 @@
         <td><input type="number" v-model="user.age" /></td>
       </tr>
       <tr>
-        <td><input type="submit" value="등록" /></td>
+        <td><input type="submit" value="수정" /></td>
       </tr>
     </table>
   </form>
@@ -30,15 +30,21 @@ import { reactive } from "vue";
 import { useRouter } from "vue-router";
 
 const router = useRouter();
-
-const user = reactive({
-  uid: "",
-  name: "",
-  hp: "",
-  age: 0,
+const props = defineProps({
+  uid: String,
+  name: String,
+  hp: String,
+  age: Number,
 });
 
-const user1Register = () => {
+const user = reactive({
+  uid: props.uid,
+  name: props.name,
+  hp: props.hp,
+  age: props.age,
+});
+
+const user1Modify = () => {
   axios
     .post("http://localhost:8080/Ch09/user1", user)
     .then((response) => {
