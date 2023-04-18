@@ -30,6 +30,8 @@ import { reactive } from "vue";
 import { useRouter } from "vue-router";
 
 const router = useRouter();
+
+// router 설정에서 props: true 설정
 const props = defineProps({
   uid: String,
   name: String,
@@ -46,9 +48,9 @@ const user = reactive({
 
 const user1Modify = () => {
   axios
-    .post("http://localhost:8080/Ch09/user1", user)
+    .put("http://localhost:8080/Ch09/user1", user)
     .then((response) => {
-      alert("등록완료!");
+      alert("수정완료!");
       router.push("/user1/list");
     })
     .catch((error) => {

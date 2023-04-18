@@ -16,7 +16,7 @@
       <td>{{ user.age }}</td>
       <td>
         <a href="#" @click.prevent="modifyUser(user)">수정</a>
-        <a href="#">삭제</a>
+        <a href="#" @click.prevent="deleteUser(user)">삭제</a>
       </td>
     </tr>
   </table>
@@ -31,6 +31,22 @@ const users = ref([]);
 
 const modifyUser = (user) => {
   router.push({ name: "User1Modify", params: user });
+};
+
+const deleteUser = (user) => {
+  const result = confirm("정말 삭제?");
+  if (!result) {
+    return;
+  }
+
+  axios
+    .delete(`http://localhost:8080/Ch09/user1/${user.uid}`)
+    .then((response) => {
+      users.value = response.data;
+    })
+    .catch((error) => {
+      console.log(error);
+    });
 };
 
 onBeforeMount(() => {

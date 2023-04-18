@@ -22,7 +22,12 @@ const router = createRouter({
         { path: "", component: User1Register },
         { path: "register", component: User1Register },
         { path: "list", component: User1List },
-        { path: "modify", name: "User1Modify", component: User1Modify },
+        {
+          path: "modify",
+          name: "User1Modify",
+          component: User1Modify,
+          props: true,
+        },
       ],
     },
     { path: "/user2", name: "User2Main", component: User2Main },
