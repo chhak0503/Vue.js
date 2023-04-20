@@ -1,8 +1,6 @@
 <template>
   <main>
-    <ul>
-      <Item></Item>
-    </ul>
+    <ul></ul>
   </main>
 </template>
 <script>
