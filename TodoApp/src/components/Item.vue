@@ -1,21 +1,30 @@
 <template>
-  <li v-for="todo in todos">
+  <li>
     <i class="fa-sharp fa-solid fa-check"></i>
-    dfdf
-    <button>삭제</button>
+    {{ todo }}
+    <button @click="btnDelete()">삭제</button>
   </li>
 </template>
 <script>
 import { useStore } from "vuex";
-import { computed } from "vue";
 
 export default {
   name: "Item",
-  setup() {
+  props: {
+    todo: String,
+  },
+  setup(props) {
     const store = useStore();
-    const todos = store.getters.todos;
 
-    return { todos };
+    const todo = props.todo;
+    const btnDelete = (index) => {
+      store.dispatch("removeTodo", index);
+    };
+
+    return {
+      todo,
+      btnDelete,
+    };
   },
 };
 </script>
