@@ -7,15 +7,15 @@
 </template>
 <script>
 import { useStore } from "vuex";
+import { computed } from "vue";
 
 export default {
   name: "Item",
   setup() {
     const store = useStore();
-    const todos = store.getters.todos;
+    const todos = computed(() => store.getters.todos);
 
     const btnDelete = (index) => {
-      console.log("index : " + index);
       store.dispatch("removeTodo", index);
     };
 
