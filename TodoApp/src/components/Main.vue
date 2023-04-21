@@ -1,6 +1,8 @@
 <template>
   <main>
-    <ul></ul>
+    <ul>
+      <Item />
+    </ul>
   </main>
 </template>
 <script>
@@ -24,23 +26,24 @@ main {
   padding: 10px;
   box-sizing: border-box;
 }
-
 main > ul {
   width: 100%;
   height: auto;
   list-style: none;
-  padding-left: 0;
+  padding: 0;
   box-sizing: border-box;
 }
-
 main > ul > li {
   width: 100%;
   height: 40px;
   line-height: 40px;
-  padding-left: 6px;
-  margin: 6px 0;
-  box-sizing: border-box;
+  padding-left: 10px;
+  margin-bottom: 6px;
   background-color: white;
+  box-sizing: border-box;
+}
+main > ul > li > i {
+  color: #62acde;
 }
 
 main > ul > li > button {

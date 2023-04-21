@@ -27,7 +27,7 @@ const store = createStore({
     },
   },
   getters: {
-    getTodos(state) {
+    todos(state) {
       return state.todos;
     },
   },
