@@ -6,6 +6,9 @@ const store = createStore({
     todos: [],
   },
   mutations: {
+    SET_TODOS(state, todos) {
+      state.todos = todos;
+    },
     ADD_TODO(state, todo) {
       state.todos.push(todo);
     },
@@ -17,6 +20,18 @@ const store = createStore({
     },
   },
   actions: {
+    getTodos(context) {
+      axios
+        .get("http://localhost:8383/todos")
+        .then((response) => {
+          console.log(response);
+          const todos = response.data;
+          context.commit("SET_TODOS", todos);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    },
     addTodo(context, todo) {
       const data = {
         content: todo,
