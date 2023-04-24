@@ -13,7 +13,6 @@ export default {
 
     const btnClear = () => {
       alert("clear");
-
       store.dispatch("clearTodo");
     };
 
