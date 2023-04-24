@@ -1,4 +1,5 @@
 import { createStore } from "vuex";
+import axios from "axios";
 
 const store = createStore({
   state: {
@@ -17,7 +18,18 @@ const store = createStore({
   },
   actions: {
     addTodo(context, todo) {
-      context.commit("ADD_TODO", todo);
+      const data = {
+        content: todo,
+      };
+
+      axios
+        .post("http://localhost:8383/todo", data)
+        .then((response) => {
+          context.commit("ADD_TODO", todo);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
     },
     removeTodo(context, index) {
       context.commit("REMOVE_TODO", index);
