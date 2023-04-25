@@ -5,7 +5,7 @@
     </v-app-bar>
     <v-main>
       <v-container>
-        <v-card class="mx-auto mt-16" max-width="400">
+        <v-card class="mx-auto mt-10" max-width="400">
           <v-card-item>
             <v-card-title>로그인</v-card-title>
           </v-card-item>

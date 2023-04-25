@@ -5,7 +5,7 @@
     </v-app-bar>
     <v-main>
       <v-container>
-        <v-sheet max-width="800" class="mx-auto mt-16">
+        <v-sheet max-width="800" class="mx-auto mt-10">
           <v-textarea
             label="이용약관"
             variant="outlined"

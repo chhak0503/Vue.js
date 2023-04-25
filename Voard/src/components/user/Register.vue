@@ -5,8 +5,8 @@
     </v-app-bar>
     <v-main>
       <v-container>
-        <v-sheet max-width="800" class="mx-auto mt-16">
-          <v-card class="mb-2">
+        <v-sheet max-width="800" class="mx-auto mt-10">
+          <v-card class="mb-6">
             <v-card-item>
               <v-card-title>사이트 이용정보 입력</v-card-title>
             </v-card-item>
@@ -51,7 +51,7 @@
             </v-card-text>
           </v-card>
 
-          <v-card class="mb-2">
+          <v-card class="mb-6">
             <v-card-item>
               <v-card-title>개인정보 입력</v-card-title>
             </v-card-item>
