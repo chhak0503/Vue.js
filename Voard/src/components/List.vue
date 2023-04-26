@@ -3,8 +3,8 @@
     <v-app-bar>
       <v-app-bar-title>글목록</v-app-bar-title>
       <p>
-        OOO님 반갑습니다.
-        <v-btn>로그아웃</v-btn>
+        {{ user?.nick }}님 반갑습니다.
+        <v-btn @click="btnLogout">로그아웃</v-btn>
       </p>
     </v-app-bar>
     <v-main>
@@ -60,8 +60,18 @@
 </template>
 <script setup>
 import { useRouter } from "vue-router";
+import { useStore } from "vuex";
+import { computed } from "vue";
 
 const router = useRouter();
+const userStore = useStore();
+
+const user = computed(() => userStore.getters.user);
+
+const btnLogout = () => {
+  localStorage.removeItem("accessToken");
+  router.push("/user/login");
+};
 
 const btnWrite = () => {
   router.push("/write");

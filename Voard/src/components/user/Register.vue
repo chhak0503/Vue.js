@@ -23,7 +23,18 @@
                     ></v-text-field>
                   </v-col>
                   <v-col cols="6">
-                    <v-btn color="success">중복확인</v-btn>
+                    <v-btn
+                      :loading="loading"
+                      color="success"
+                      @click="btnCheckUid"
+                      >중복확인</v-btn
+                    >
+                    <v-chip v-if="rsChip1" class="ma-2" color="red">
+                      이미 사용중인 아이디 입니다.
+                    </v-chip>
+                    <v-chip v-if="rsChip2" class="ma-2" color="green">
+                      사용 가능한 아이디 입니다.
+                    </v-chip>
                   </v-col>
                 </v-row>
                 <v-row>
@@ -165,7 +176,7 @@
   </v-app>
 </template>
 <script setup>
-import { reactive } from "vue";
+import { ref, reactive } from "vue";
 import { useRouter } from "vue-router";
 import axios from "axios";
 
@@ -183,6 +194,37 @@ const user = reactive({
   addr1: null,
   addr2: null,
 });
+
+const rsChip1 = ref(false);
+const rsChip2 = ref(false);
+const loading = ref(false);
+
+const btnCheckUid = () => {
+  loading.value = true;
+
+  axios
+    .get("http://localhost:8080/Voard/user/countUid", {
+      params: { uid: user.uid },
+    })
+    .then((response) => {
+      setTimeout(() => {
+        loading.value = false;
+
+        if (response.data > 0) {
+          rsChip1.value = true;
+          rsChip2.value = false;
+        } else {
+          rsChip1.value = false;
+          rsChip2.value = true;
+        }
+      }, 500);
+
+      console.log(response);
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+};
 
 const btnCancel = () => {
   router.push("/user/login");
