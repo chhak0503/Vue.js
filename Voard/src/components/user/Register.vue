@@ -19,6 +19,7 @@
                       variant="outlined"
                       density="compact"
                       hide-details="true"
+                      v-model="user.uid"
                     ></v-text-field>
                   </v-col>
                   <v-col cols="6">
@@ -28,10 +29,12 @@
                 <v-row>
                   <v-col cols="6">
                     <v-text-field
+                      type="password"
                       label="비밀번호 입력"
                       variant="outlined"
                       density="compact"
                       hide-details="true"
+                      v-model="user.pass1"
                     ></v-text-field>
                   </v-col>
                   <v-col cols="6"></v-col>
@@ -39,10 +42,12 @@
                 <v-row>
                   <v-col cols="6">
                     <v-text-field
+                      type="password"
                       label="비밀번호 확인"
                       variant="outlined"
                       density="compact"
                       hide-details="true"
+                      v-model="user.pass2"
                     ></v-text-field>
                   </v-col>
                   <v-col cols="6"></v-col>
@@ -64,6 +69,7 @@
                       variant="outlined"
                       density="compact"
                       hide-details="true"
+                      v-model="user.name"
                     ></v-text-field>
                   </v-col>
                   <v-col cols="6"></v-col>
@@ -75,6 +81,7 @@
                       variant="outlined"
                       density="compact"
                       hide-details="true"
+                      v-model="user.nick"
                     ></v-text-field>
                   </v-col>
                   <v-col cols="6">
@@ -88,6 +95,7 @@
                       variant="outlined"
                       density="compact"
                       hide-details="true"
+                      v-model="user.email"
                     ></v-text-field>
                   </v-col>
                   <v-col cols="6"></v-col>
@@ -99,6 +107,7 @@
                       variant="outlined"
                       density="compact"
                       hide-details="true"
+                      v-model="user.hp"
                     ></v-text-field>
                   </v-col>
                   <v-col cols="6"></v-col>
@@ -110,6 +119,7 @@
                       variant="outlined"
                       density="compact"
                       hide-details="true"
+                      v-model="user.zip"
                     ></v-text-field>
                   </v-col>
                   <v-col cols="2">
@@ -124,6 +134,7 @@
                       variant="outlined"
                       density="compact"
                       hide-details="true"
+                      v-model="user.addr1"
                     ></v-text-field>
                   </v-col>
                   <v-col cols="2"></v-col>
@@ -135,6 +146,7 @@
                       variant="outlined"
                       density="compact"
                       hide-details="true"
+                      v-model="user.addr2"
                     ></v-text-field>
                   </v-col>
                   <v-col cols="2"></v-col>
@@ -153,15 +165,39 @@
   </v-app>
 </template>
 <script setup>
+import { reactive } from "vue";
 import { useRouter } from "vue-router";
+import axios from "axios";
 
 const router = useRouter();
+
+const user = reactive({
+  uid: null,
+  pass1: null,
+  pass2: null,
+  name: null,
+  nick: null,
+  email: null,
+  hp: null,
+  zip: null,
+  addr1: null,
+  addr2: null,
+});
 
 const btnCancel = () => {
   router.push("/user/login");
 };
+
 const btnRegister = () => {
-  router.push("/list");
+  axios
+    .post("http://localhost:8080/Voard/user/register", user)
+    .then((response) => {
+      console.log(response);
+      router.push("/user/login");
+    })
+    .catch((error) => {
+      console.log(error);
+    });
 };
 </script>
 <style scoped></style>

@@ -57,6 +57,7 @@ const state = reactive({
 const btnCancel = () => {
   router.push("/user/login");
 };
+
 const btnNext = () => {
   if (state.isCheck1 && state.isCheck2) {
     router.push("/user/register");
