@@ -37,6 +37,7 @@
   </v-app>
 </template>
 <script setup>
+import axios from "axios";
 import { useRouter } from "vue-router";
 
 const router = useRouter();
@@ -47,5 +48,16 @@ const btnCancel = () => {
 const btnNext = () => {
   router.push("/user/register");
 };
+
+onBeforeMount(() => {
+  axios
+    .get("")
+    .then((response) => {
+      console.log(response);
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+});
 </script>
 <style scoped></style>
