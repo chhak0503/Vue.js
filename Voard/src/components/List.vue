@@ -34,9 +34,13 @@
             <v-btn color="primary" @click="btnWrite">글쓰기</v-btn>
           </v-sheet>
           <v-pagination
-            :length="100"
+            :length="state.lastPageNum"
             :total-visible="5"
             rounded="circle"
+            v-model="page"
+            @click="pageHandler"
+            @next="pageHandler"
+            @prev="pageHandler"
           ></v-pagination>
         </v-sheet>
       </v-container>
@@ -47,7 +51,7 @@
 <script setup>
 import { useRouter } from "vue-router";
 import { useStore } from "vuex";
-import { reactive, computed, onBeforeMount } from "vue";
+import { ref, reactive, computed, onBeforeMount } from "vue";
 import axios from "axios";
 
 const router = useRouter();
@@ -58,7 +62,9 @@ const user = computed(() => userStore.getters.user);
 const state = reactive({
   data: {},
   pageStartNum: 0,
+  lastPageNum: 0,
 });
+const page = ref(1);
 
 const btnLogout = () => {
   localStorage.removeItem("accessToken");
@@ -69,17 +75,27 @@ const btnWrite = () => {
   router.push("/write");
 };
 
-onBeforeMount(() => {
+const pageHandler = () => {
+  getArticles(page.value);
+};
+
+const getArticles = (pg) => {
   axios
-    .get("http://localhost:8080/Voard/list")
+    .get("http://localhost:8080/Voard/list?pg=" + pg)
     .then((response) => {
       console.log(response);
-      state.data = response.data;
-      state.pageStartNum = response.data.pageStartNum;
+      const data = response.data;
+      state.data = data;
+      state.pageStartNum = data.pageStartNum;
+      state.lastPageNum = data.lastPageNum;
     })
     .catch((error) => {
       console.log(error);
     });
+};
+
+onBeforeMount(() => {
+  getArticles(1);
 });
 </script>
 <style scoped></style>
