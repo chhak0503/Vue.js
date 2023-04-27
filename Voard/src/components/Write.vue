@@ -24,6 +24,17 @@
             <v-btn color="primary" @click="btnWrite" class="ml-2">글등록</v-btn>
           </v-sheet>
         </v-sheet>
+        <v-dialog v-model="dialog" width="auto">
+          <v-card>
+            <v-toolbar color="primary" title="글 등록 확인"></v-toolbar>
+            <v-card-text>작성한 글이 잘 등록 되었습니다.</v-card-text>
+            <v-card-actions>
+              <v-spacer></v-spacer>
+              <v-btn color="primary" @click="btnCloseDlg">확인</v-btn>
+              <v-spacer></v-spacer>
+            </v-card-actions>
+          </v-card>
+        </v-dialog>
       </v-container>
     </v-main>
   </v-app>
@@ -43,6 +54,13 @@ const article = reactive({
   uid: null,
 });
 
+const dialog = ref(false);
+
+const btnCloseDlg = () => {
+  dialog.value = false;
+  router.push("/list");
+};
+
 const btnCancel = () => {
   router.push("/list");
 };
@@ -55,8 +73,8 @@ const btnWrite = () => {
     .then((response) => {
       console.log(response);
       if (response.data > 0) {
-        alert("등록완료");
-        router.push("/list");
+        dialog.value = true;
+        //router.push("/list");
       }
     })
     .catch((error) => {
