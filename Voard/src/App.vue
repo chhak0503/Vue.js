@@ -23,7 +23,6 @@ onBeforeMount(() => {
         console.log(response);
         const user = response.data.user;
         userStore.dispatch("setUser", user);
-
         router.push("/list");
       })
       .catch((error) => {
